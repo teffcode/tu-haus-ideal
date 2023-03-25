@@ -1,0 +1,6 @@
+.welcome {
+  background: url('../../assets/welcome.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 27rem;
+}
