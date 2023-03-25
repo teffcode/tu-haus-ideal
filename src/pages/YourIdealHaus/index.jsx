@@ -13,7 +13,7 @@ const YourIdealHaus = () => {
     let html = document.getElementById('text').innerHTML
     let attr = tag.setAttribute('data', html)
     let txt = tag.getAttribute('data')
-    let speed = 80
+    let speed = 70
 
     const typeWriter = () => {
       if (i <= txt.length) {

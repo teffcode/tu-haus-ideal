@@ -6,7 +6,8 @@
 }
 
 .welcome__text p {
-  @apply inline-block overflow-hidden;
+  @apply inline-block overflow-hidden rounded-lg p-2;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .welcome__text p:after {
