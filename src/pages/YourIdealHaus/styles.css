@@ -4,3 +4,22 @@
   background-position: center;
   max-width: 27rem;
 }
+
+.welcome__text p {
+  @apply inline-block overflow-hidden;
+}
+
+.welcome__text p:after {
+  @apply inline-block bg-white ml-0.5;
+  content: '';
+  height: 1rem;
+  width: 0.2rem;
+  animation: cursor 0.4s infinite;
+}
+
+@keyframes cursor {
+  0% { opacity: 1; }
+  49% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 0; }
+}
