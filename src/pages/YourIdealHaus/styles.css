@@ -24,3 +24,10 @@
   50% { opacity: 0; }
   100% { opacity: 0; }
 }
+
+.playground {
+  background: url('../../assets/playground.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 27rem;
+}

@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import PrimaryButton from '../../components/primaryButton'
 import Logo from '../../components/Logo'
+import { typeWriterEffect } from '../../utils'
 import { HausContext } from '../App'
 import './styles.css'
 
@@ -8,22 +9,9 @@ const YourIdealHaus = () => {
   const context = useContext(HausContext)
 
   useEffect(() => {
-    let i = 0
-    let tag = document.getElementById('text')
-    let html = document.getElementById('text').innerHTML
-    let attr = tag.setAttribute('data', html)
-    let txt = tag.getAttribute('data')
-    let speed = 70
-
-    const typeWriter = () => {
-      if (i <= txt.length) {
-        tag.innerHTML = txt.slice(0 , i + 1)
-        i++
-        setTimeout(typeWriter, speed)
-      }
+    if (context.view === 'welcome') {
+      typeWriterEffect('text')
     }
-
-    typeWriter()
   })
 
   const renderWelcome = () => {
@@ -43,7 +31,7 @@ const YourIdealHaus = () => {
 
   const renderPlayground = () => {
     return (
-      <div className='flex flex-col items-center mt-12'>
+      <div className='playground inline-flex flex-col items-center w-full h-full p-6'>
         <Logo />
       </div>
     )

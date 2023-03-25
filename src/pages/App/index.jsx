@@ -5,7 +5,7 @@ import '../../styles/index.css'
 export const HausContext = createContext({})
 
 const App = () => {
-  const [view, setView] = useState(false)
+  const [view, setView] = useState('welcome')
 
   return (
     <HausContext.Provider value={{
