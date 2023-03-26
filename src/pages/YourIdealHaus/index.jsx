@@ -4,6 +4,7 @@ import PrimaryButton from '../../components/PrimaryButton'
 import RadioOption from '../../components/RadioOption'
 import AnswerMessage from '../../components/AnswerMessage'
 import SimpleRecommendation from '../../components/SimpleRecommendation'
+import MainRecommendation from '../../components/MainRecommendation'
 import Logo from '../../components/Logo'
 import { typeWriterEffect, scrollToBottom } from '../../utils'
 import { HausContext } from '../App'
@@ -60,6 +61,49 @@ const YourIdealHaus = () => {
         </PrimaryButton>
       </div>
     )
+  }
+
+  const renderRecommendations = (answer) => {
+    if (Object.keys(context.userResponses).length === 4) {
+      return (
+        <>
+          <MainRecommendation
+            key='main'
+            name={answer.recommendations[0]?.NOMBRE}
+            price={answer.recommendations[0]?.PRECIO}
+            image={answer.recommendations[0]?.IMAGEN} />
+          <div className='flex gap-2 mt-1'>
+            {
+              answer.recommendations?.slice(1).map((recommendation, index) => {
+                return (
+                  <SimpleRecommendation
+                    key={index+recommendation.NOMBRE}
+                    name={recommendation.NOMBRE}
+                    price={recommendation.PRECIO}
+                    image={recommendation.IMAGEN} />
+                )
+              })
+            }
+          </div>
+        </>
+      )
+    } else {
+      return (
+        <div className='flex gap-2 mt-1'>
+          {
+            answer.recommendations?.map((recommendation, index) => {
+              return (
+                <SimpleRecommendation
+                  key={index+recommendation.NOMBRE}
+                  name={recommendation.NOMBRE}
+                  price={recommendation.PRECIO_MINIMO}
+                  image={recommendation.IMAGEN} />
+              )
+            })
+          }
+        </div>
+      )
+    }
   }
 
   const renderPlayground = () => {
@@ -159,19 +203,7 @@ const YourIdealHaus = () => {
                     <AnswerMessage key={index}>
                       {answer.message}
                     </AnswerMessage>
-                    <div className='flex gap-2 mt-1'>
-                      {
-                        answer.recommendations?.map((recommendation, index) => {
-                          return (
-                            <SimpleRecommendation
-                              key={index+recommendation.NOMBRE}
-                              name={recommendation.NOMBRE}
-                              price={recommendation.PRECIO_MINIMO}
-                              image={recommendation.IMAGEN} />
-                          )
-                        })
-                      }
-                    </div>
+                    {renderRecommendations(answer)}
                   </>
                 )
               }

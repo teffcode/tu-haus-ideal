@@ -44,3 +44,17 @@
   width: 4rem;
   height: 5rem;
 }
+
+.main-recommendation {
+  width: 16rem;
+}
+
+.main-recommendation figure {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.main-recommendation__crown {
+  top: -2.2rem;
+  right: 0.3rem;
+}
