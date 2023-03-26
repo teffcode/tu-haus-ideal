@@ -1,11 +1,18 @@
-const PrimaryButton = ({ onClick, children }) => {
+import styled from 'styled-components'
+
+const Button = styled.button`
+  opacity: ${({disabled}) => (disabled ? '0.5' : '1')};
+`
+
+const PrimaryButton = ({ disabled, onClick, children }) => {
   return (
-    <button
+    <Button
       type='button'
-      className="bg-primary-600 rounded-lg h-12 text-white text-md font-medium w-full"
+      className='bg-primary-600 rounded-lg h-12 text-white text-md font-medium w-full'
+      disabled={disabled}
       onClick={onClick}>
       {children}
-    </button>
+    </Button>
   )
 }
 
