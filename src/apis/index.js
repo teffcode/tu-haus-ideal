@@ -1,0 +1,1 @@
+export const QUESTIONS_API = 'https://ms-lh-hackathon-2023.onrender.com/api/questions'

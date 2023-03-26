@@ -1,6 +1,3 @@
-import { useContext } from 'react'
-import { HausContext } from '../../pages/App'
-
 const PrimaryButton = ({ onClick, children }) => {
   return (
     <button

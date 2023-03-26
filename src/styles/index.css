@@ -17,3 +17,7 @@ body {
 body > div {
   @apply h-full;
 }
+
+input:checked {
+  border: 2px solid pink;
+}
