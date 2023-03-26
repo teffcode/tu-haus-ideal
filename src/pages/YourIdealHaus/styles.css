@@ -39,3 +39,8 @@
 ::-webkit-scrollbar {
   width: 0;
 }
+
+.simple-recommendation {
+  width: 4rem;
+  height: 5rem;
+}

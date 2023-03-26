@@ -19,8 +19,5 @@ export const typeWriterEffect = (elementId) => {
 
 export const scrollToBottom = (elementId) => {
   const element = document.getElementById(elementId)
-  console.log('element: ', element)
-  console.log('scrollTop: ', element.scrollTop)
-  console.log('scrollHeight: ', element.scrollHeight)
   element.scrollTop = element.scrollHeight
 }

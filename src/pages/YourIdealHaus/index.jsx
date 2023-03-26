@@ -3,6 +3,7 @@ import axios from 'axios'
 import PrimaryButton from '../../components/PrimaryButton'
 import RadioOption from '../../components/RadioOption'
 import AnswerMessage from '../../components/AnswerMessage'
+import SimpleRecommendation from '../../components/SimpleRecommendation'
 import Logo from '../../components/Logo'
 import { typeWriterEffect, scrollToBottom } from '../../utils'
 import { HausContext } from '../App'
@@ -155,16 +156,22 @@ const YourIdealHaus = () => {
               if (answer != 'undefined') {
                 return (
                   <>
-                    <AnswerMessage key={index}>{answer.message}</AnswerMessage>
-                    {
-                      answer.recommendations?.map((recommendation, index) => {
-                        return (
-                          <div key={index}>
-                            {recommendation.NOMBRE}
-                          </div>
-                        )
-                      })
-                    }
+                    <AnswerMessage key={index}>
+                      {answer.message}
+                    </AnswerMessage>
+                    <div className='flex gap-2 mt-1'>
+                      {
+                        answer.recommendations?.map((recommendation, index) => {
+                          return (
+                            <SimpleRecommendation
+                              key={index+recommendation.NOMBRE}
+                              name={recommendation.NOMBRE}
+                              price={recommendation.PRECIO_MINIMO}
+                              image={recommendation.IMAGEN} />
+                          )
+                        })
+                      }
+                    </div>
                   </>
                 )
               }
