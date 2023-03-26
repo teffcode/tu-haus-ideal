@@ -5,7 +5,7 @@ import RadioOption from '../../components/RadioOption'
 import Logo from '../../components/Logo'
 import { typeWriterEffect } from '../../utils'
 import { HausContext } from '../App'
-import { GREETINGS_API, QUESTIONS_API } from '../../apis'
+import { GREETINGS_API, QUESTIONS_API, ANSWERS_API } from '../../apis'
 import './styles.css'
 
 const YourIdealHaus = () => {
@@ -14,10 +14,17 @@ const YourIdealHaus = () => {
   const requestQuestions = async () => {
     const questions = await axios.post(QUESTIONS_API, {
       user_type: 'EXPLORER_INVESTOR',
-      user_responses: context.answers
     })
     context.setQuestions(questions.data)
     await context.setGoToPlayground(true)
+  }
+
+  const requestAnswers = async () => {
+    const answers = await axios.post(ANSWERS_API, {
+      user_type: 'EXPLORER_INVESTOR',
+      user_responses: context.userResponses
+    })
+    context.setAnswers(answers.data)
   }
 
   useEffect(() => {
@@ -53,23 +60,23 @@ const YourIdealHaus = () => {
 
   const renderPlayground = () => {
     return (
-      <div className='playground inline-flex flex-col items-center w-full h-full p-6'>
-        <div className='mt-4 mb-6'>
+      <div className='playground inline-flex flex-col items-center w-full h-full p-5'>
+        <div className='my-4'>
           <Logo />
         </div>
         <p className='text-white text-sm font-light truncate w-full mb-1'>
           {context.questions[0]?.question}
         </p>
-        <div className='grid grid-cols-4 gap-2 w-full'>
+        <div className='grid grid-cols-2 gap-2 w-full'>
           {
             context.questions[0]?.answers?.map((answer, index) => {
               return (
                 <RadioOption
                   key={index}
-                  checked={context.answers[0] === index}
+                  checked={context.userResponses[0] === answer.value}
                   onChange={() => {
-                    context.setAnswers({ ...context.answers, 0: index })
-                    requestQuestions()
+                    context.setUserResponses({ ...context.userResponses, 0: answer.value })
+                    requestAnswers()
                   }}>
                   {answer.data}
                 </RadioOption>
@@ -77,19 +84,19 @@ const YourIdealHaus = () => {
             })
           }
         </div>
-        <p className='text-white text-sm font-light truncate w-full mt-3 mb-1'>
+        <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
           {context.questions[1]?.question}
         </p>
-        <div className='grid grid-cols-3 gap-2 w-full'>
+        <div className='grid grid-cols-2 gap-2 w-full'>
           {
             context.questions[1]?.answers?.map((answer, index) => {
               return (
                 <RadioOption
                   key={index}
-                  checked={context.answers[1] === index}
+                  checked={context.userResponses[1] === answer.value}
                   onChange={() => {
-                    context.setAnswers({ ...context.answers, 1: index })
-                    requestQuestions()
+                    context.setUserResponses({ ...context.userResponses, 1: answer.value })
+                    requestAnswers()
                   }}>
                   {answer.data}
                 </RadioOption>
@@ -97,19 +104,19 @@ const YourIdealHaus = () => {
             })
           }
         </div>
-        <p className='text-white text-sm font-light truncate w-full mt-3 mb-1'>
+        <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
           {context.questions[2]?.question}
         </p>
-        <div className='grid grid-cols-4 gap-2 w-full'>
+        <div className='grid grid-cols-3 gap-2 w-full'>
           {
             context.questions[2]?.answers?.map((answer, index) => {
               return (
                 <RadioOption
                   key={index}
-                  checked={context.answers[2] === index}
+                  checked={context.userResponses[2] === answer.value}
                   onChange={() => {
-                    context.setAnswers({ ...context.answers, 2: index })
-                    requestQuestions()
+                    context.setUserResponses({ ...context.userResponses, 2: answer.value })
+                    requestAnswers()
                   }}>
                   {answer.data}
                 </RadioOption>
@@ -117,7 +124,7 @@ const YourIdealHaus = () => {
             })
           }
         </div>
-        <p className='text-white text-sm font-light truncate w-full mt-3 mb-1'>
+        <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
           {context.questions[3]?.question}
         </p>
         <div className='grid grid-cols-2 gap-2 w-full'>
@@ -126,10 +133,10 @@ const YourIdealHaus = () => {
               return (
                 <RadioOption
                   key={index}
-                  checked={context.answers[3] === index}
+                  checked={context.userResponses[3] === answer.value}
                   onChange={() => {
-                    context.setAnswers({ ...context.answers, 3: index })
-                    requestQuestions()
+                    context.setUserResponses({ ...context.userResponses, 3: answer.value })
+                    requestAnswers()
                   }}>
                   {answer.data}
                 </RadioOption>

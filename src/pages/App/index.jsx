@@ -9,6 +9,7 @@ const App = () => {
   const [greetings, setGreetings] = useState(null)
   const [questions, setQuestions] = useState([])
   const [answers, setAnswers] = useState({})
+  const [userResponses, setUserResponses] = useState({})
   const [goToPlayground, setGoToPlayground] = useState(false)
 
   return (
@@ -21,6 +22,8 @@ const App = () => {
       setQuestions,
       answers,
       setAnswers,
+      userResponses,
+      setUserResponses,
       goToPlayground,
       setGoToPlayground
     }}>

@@ -12,7 +12,7 @@ const RadioOption = ({ checked, onChange, children }) => {
   return (
     <Label
       checked={checked}
-      className='flex items-center justify-center rounded-lg w-full h-full p-1 text-center text-white text-sm font-medium'>
+      className='flex items-center justify-center rounded-lg w-full h-full p-0.5 text-center text-white text-sm font-medium'>
       <input
         type='radio'
         checked={checked}
