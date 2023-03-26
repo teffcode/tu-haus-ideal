@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Label = styled.label`
-  border: 0.2rem solid ${({checked}) => (checked ? '#3ECFAF' : 'rgba(255, 255, 255, 0.3)')};
+  border: 0.2rem solid ${({checked}) => (checked ? '#3ECFAF' : 'transparent')};
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(0.313rem);
