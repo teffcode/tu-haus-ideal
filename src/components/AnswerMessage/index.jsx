@@ -1,6 +1,6 @@
 const AnswerMessage = ({ children }) => {
   return (
-    <div className='rounded-t-lg rounded-bl-lg font-light text-sm bg-white py-1.5 px-4 m-1 w-auto'>
+    <div className='rounded-t-2xl rounded-bl-2xl font-light text-sm bg-white py-3 px-4 m-1 w-5/6'>
       {children}
     </div>
   )

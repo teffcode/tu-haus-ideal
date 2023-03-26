@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import YourIdealHaus from '../YourIdealHaus'
 import '../../styles/index.css'
 
@@ -8,9 +8,10 @@ const App = () => {
   const [view, setView] = useState('welcome')
   const [greetings, setGreetings] = useState(null)
   const [questions, setQuestions] = useState([])
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState([])
   const [userResponses, setUserResponses] = useState({})
   const [goToPlayground, setGoToPlayground] = useState(false)
+  const [recommendations, setRecommendations] = useState([])
 
   return (
     <HausContext.Provider value={{
@@ -25,7 +26,9 @@ const App = () => {
       userResponses,
       setUserResponses,
       goToPlayground,
-      setGoToPlayground
+      setGoToPlayground,
+      recommendations,
+      setRecommendations
     }}>
       <YourIdealHaus />
     </HausContext.Provider>

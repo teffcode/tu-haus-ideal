@@ -25,7 +25,8 @@ const YourIdealHaus = () => {
       user_type: 'EXPLORER_INVESTOR',
       user_responses: context.userResponses
     })
-    context.setAnswers(answers.data)
+    context.setAnswers([...context.answers, answers.data])
+    context.setRecommendations(answers.data.recommendations)
     scrollToBottom('messages')
   }
 
@@ -149,8 +150,26 @@ const YourIdealHaus = () => {
           </div>
         </section>
         <section id='messages' className='playground__messages rounded-lg flex flex-col items-end mt-5 p-4 h-full overflow-y-scroll'>
-          <AnswerMessage>{'Hola mundito'}</AnswerMessage>
-          <AnswerMessage>{'Hola mundito last con un texto demasiado demasiado demasiado largo a ver qué pasa y cómo se ve en la pantalla'}</AnswerMessage>
+          {
+            context.answers.map((answer, index) => {
+              if (answer != 'undefined') {
+                return (
+                  <>
+                    <AnswerMessage key={index}>{answer.message}</AnswerMessage>
+                    {
+                      answer.recommendations?.map((recommendation, index) => {
+                        return (
+                          <div key={index}>
+                            {recommendation.NOMBRE}
+                          </div>
+                        )
+                      })
+                    }
+                  </>
+                )
+              }
+            })
+          }
         </section>
       </div>
     )
