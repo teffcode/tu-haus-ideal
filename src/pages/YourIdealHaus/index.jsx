@@ -2,8 +2,9 @@ import { useContext, useEffect } from 'react'
 import axios from 'axios'
 import PrimaryButton from '../../components/PrimaryButton'
 import RadioOption from '../../components/RadioOption'
+import AnswerMessage from '../../components/AnswerMessage'
 import Logo from '../../components/Logo'
-import { typeWriterEffect } from '../../utils'
+import { typeWriterEffect, scrollToBottom } from '../../utils'
 import { HausContext } from '../App'
 import { GREETINGS_API, QUESTIONS_API, ANSWERS_API } from '../../apis'
 import './styles.css'
@@ -25,6 +26,7 @@ const YourIdealHaus = () => {
       user_responses: context.userResponses
     })
     context.setAnswers(answers.data)
+    scrollToBottom('messages')
   }
 
   useEffect(() => {
@@ -60,90 +62,96 @@ const YourIdealHaus = () => {
 
   const renderPlayground = () => {
     return (
-      <div className='playground inline-flex flex-col items-center w-full h-full p-5'>
-        <div className='my-4'>
+      <div className='playground flex flex-col w-full h-full px-6 py-5'>
+        <div className='flex justify-center my-3'>
           <Logo />
         </div>
-        <p className='text-white text-sm font-light truncate w-full mb-1'>
-          {context.questions[0]?.question}
-        </p>
-        <div className='grid grid-cols-2 gap-2 w-full'>
-          {
-            context.questions[0]?.answers?.map((answer, index) => {
-              return (
-                <RadioOption
-                  key={index}
-                  checked={context.userResponses[0] === answer.value}
-                  onChange={() => {
-                    context.setUserResponses({ ...context.userResponses, 0: answer.value })
-                    requestAnswers()
-                  }}>
-                  {answer.data}
-                </RadioOption>
-              )
-            })
-          }
-        </div>
-        <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
-          {context.questions[1]?.question}
-        </p>
-        <div className='grid grid-cols-2 gap-2 w-full'>
-          {
-            context.questions[1]?.answers?.map((answer, index) => {
-              return (
-                <RadioOption
-                  key={index}
-                  checked={context.userResponses[1] === answer.value}
-                  onChange={() => {
-                    context.setUserResponses({ ...context.userResponses, 1: answer.value })
-                    requestAnswers()
-                  }}>
-                  {answer.data}
-                </RadioOption>
-              )
-            })
-          }
-        </div>
-        <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
-          {context.questions[2]?.question}
-        </p>
-        <div className='grid grid-cols-3 gap-2 w-full'>
-          {
-            context.questions[2]?.answers?.map((answer, index) => {
-              return (
-                <RadioOption
-                  key={index}
-                  checked={context.userResponses[2] === answer.value}
-                  onChange={() => {
-                    context.setUserResponses({ ...context.userResponses, 2: answer.value })
-                    requestAnswers()
-                  }}>
-                  {answer.data}
-                </RadioOption>
-              )
-            })
-          }
-        </div>
-        <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
-          {context.questions[3]?.question}
-        </p>
-        <div className='grid grid-cols-2 gap-2 w-full'>
-          {
-            context.questions[3]?.answers?.map((answer, index) => {
-              return (
-                <RadioOption
-                  key={index}
-                  checked={context.userResponses[3] === answer.value}
-                  onChange={() => {
-                    context.setUserResponses({ ...context.userResponses, 3: answer.value })
-                    requestAnswers()
-                  }}>
-                  {answer.data}
-                </RadioOption>
-              )
-            })
-          }
-        </div>
+        <section className='w-full px-4'>
+          <p className='text-white text-sm font-light truncate w-full mb-1'>
+            {context.questions[0]?.question}
+          </p>
+          <div className='grid grid-cols-2 gap-2 w-full'>
+            {
+              context.questions[0]?.answers?.map((answer, index) => {
+                return (
+                  <RadioOption
+                    key={index}
+                    checked={context.userResponses[0] === answer.value}
+                    onChange={() => {
+                      context.setUserResponses({ ...context.userResponses, 0: answer.value })
+                      requestAnswers()
+                    }}>
+                    {answer.data}
+                  </RadioOption>
+                )
+              })
+            }
+          </div>
+          <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
+            {context.questions[1]?.question}
+          </p>
+          <div className='grid grid-cols-2 gap-2 w-full'>
+            {
+              context.questions[1]?.answers?.map((answer, index) => {
+                return (
+                  <RadioOption
+                    key={index}
+                    checked={context.userResponses[1] === answer.value}
+                    onChange={() => {
+                      context.setUserResponses({ ...context.userResponses, 1: answer.value })
+                      requestAnswers()
+                    }}>
+                    {answer.data}
+                  </RadioOption>
+                )
+              })
+            }
+          </div>
+          <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
+            {context.questions[2]?.question}
+          </p>
+          <div className='grid grid-cols-3 gap-2 w-full'>
+            {
+              context.questions[2]?.answers?.map((answer, index) => {
+                return (
+                  <RadioOption
+                    key={index}
+                    checked={context.userResponses[2] === answer.value}
+                    onChange={() => {
+                      context.setUserResponses({ ...context.userResponses, 2: answer.value })
+                      requestAnswers()
+                    }}>
+                    {answer.data}
+                  </RadioOption>
+                )
+              })
+            }
+          </div>
+          <p className='text-white text-sm font-light truncate w-full mt-4 mb-1'>
+            {context.questions[3]?.question}
+          </p>
+          <div className='grid grid-cols-2 gap-2 w-full'>
+            {
+              context.questions[3]?.answers?.map((answer, index) => {
+                return (
+                  <RadioOption
+                    key={index}
+                    checked={context.userResponses[3] === answer.value}
+                    onChange={() => {
+                      context.setUserResponses({ ...context.userResponses, 3: answer.value })
+                      requestAnswers()
+                    }}>
+                    {answer.data}
+                  </RadioOption>
+                )
+              })
+            }
+          </div>
+        </section>
+        <section id='messages' className='playground__messages rounded-lg flex flex-col items-end mt-5 p-4 h-full overflow-y-scroll'>
+          <AnswerMessage>{'Hola mundito'}</AnswerMessage>
+          <AnswerMessage>{'Hola mundito last con un texto demasiado demasiado demasiado largo a ver qué pasa y cómo se ve en la pantalla'}</AnswerMessage>
+        </section>
       </div>
     )
   }
