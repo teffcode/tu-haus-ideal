@@ -10,7 +10,7 @@ const MainRecommendation = ({ name, price, image }) => {
         </div>
         <div className='flex flex-col justify-center'>
           <p className='text-lg font-medium truncate m-0'>{name}</p>
-          <p className='text-md font-light m-0'>${price}</p>
+          <p className='text-md font-light m-0'>{price.toLocaleString('es-CO', {currency: 'COP', style: 'currency'})}</p>
         </div>
       </div>
       <div className='animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-300 opacity-75'></div>

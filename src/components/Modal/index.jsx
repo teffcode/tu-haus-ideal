@@ -56,7 +56,7 @@ const Modal = ({ data }) => {
       <Listing image={data.IMAGEN} className='flex flex-col rounded-lg w-5/6 border-2 border-white'>
         <button
           onClick={() => context.setIsModalVisible(false)}
-          className='absolute right-0 top-0 m-3 border-none'>
+          className='absolute right-0 top-0 m-3 border-none z-20'>
           <img src="https://img.icons8.com/material-outlined/24/ffffff/delete-sign.png"/>
         </button>
         <Crown className='absolute flex justify-center'>
@@ -65,16 +65,16 @@ const Modal = ({ data }) => {
         <div className='flex-1 z-10'>
           <p className='text-center font-light text-md text-white mt-8 mb-3'>Tu Haus ideal es:</p>
           <p className='text-center text-3xl text-white'>{data.NOMBRE}</p>
-          <p className='text-center font-light text-xl text-white mt-1'>Desde ${data.PRECIO}</p>
+          <p className='text-center font-light text-xl text-white mt-1'>Desde {data.PRECIO.toLocaleString('es-CO', {currency: 'COP', style: 'currency'})}</p>
         </div>
-        <div className='flex gap-2 w-full p-3'>
-          <button className='modal py-2.5 text-white rounded-lg border border-white w-full'>
+        <div className='flex gap-1.5 w-full p-3'>
+          <button className='py-2 text-carbon-800 bg-brand-300 z-10 text-md rounded-lg border border-white w-full'>
             Pagar
           </button>
-          <button className='modal py-2.5 text-white rounded-lg border border-white w-full'>
+          <button className='py-2 text-carbon-800 bg-brand-300 z-10 text-md rounded-lg border border-white w-full'>
             Contactar
           </button>
-          <button className='modal py-2.5 text-white rounded-lg border border-white w-full'>
+          <button className='py-2 text-carbon-800 bg-brand-300 z-10 text-md rounded-lg border border-white w-full'>
             Ver más
           </button>
         </div>
