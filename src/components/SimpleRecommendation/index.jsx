@@ -7,13 +7,12 @@ const SimpleCard = styled.div`
   background-size: cover;
 `
 
-const SimpleRecommendation = ({ name, price, image }) => {
+const SimpleRecommendation = ({ name, image }) => {
   return (
     <SimpleCard
       image={image}
       className='simple-recommendation rounded-lg border border-white'>
       <p className='text-white text-xs my-1 mx-2 truncate'>{name}</p>
-      <p className='text-white text-sm'>{price}</p>
     </SimpleCard>
   )
 }

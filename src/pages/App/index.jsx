@@ -11,7 +11,6 @@ const App = () => {
   const [answers, setAnswers] = useState([])
   const [userResponses, setUserResponses] = useState({})
   const [goToPlayground, setGoToPlayground] = useState(false)
-  const [recommendations, setRecommendations] = useState([])
 
   return (
     <HausContext.Provider value={{
@@ -26,9 +25,7 @@ const App = () => {
       userResponses,
       setUserResponses,
       goToPlayground,
-      setGoToPlayground,
-      recommendations,
-      setRecommendations
+      setGoToPlayground
     }}>
       <YourIdealHaus />
     </HausContext.Provider>

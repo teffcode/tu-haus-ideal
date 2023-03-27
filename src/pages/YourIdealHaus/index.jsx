@@ -27,8 +27,7 @@ const YourIdealHaus = () => {
       user_type: 'EXPLORER_INVESTOR',
       user_responses: context.userResponses
     })
-    context.setAnswers([...context.answers, answers.data])
-    context.setRecommendations(answers.data.recommendations)
+    context.setAnswers([...context.answers, { data: answers.data, user_responses: context.userResponses }])
     scrollToBottom('messages')
   }
 
@@ -63,47 +62,45 @@ const YourIdealHaus = () => {
     )
   }
 
-  const renderRecommendations = (answer) => {
-    if (Object.keys(context.userResponses).length === 4) {
-      return (
-        <>
-          <MainRecommendation
-            key='main'
-            name={answer.recommendations[0]?.NOMBRE}
-            price={answer.recommendations[0]?.PRECIO}
-            image={answer.recommendations[0]?.IMAGEN} />
-          <div className='flex gap-2 mt-1'>
-            {
-              answer.recommendations?.slice(1).map((recommendation, index) => {
-                return (
-                  <SimpleRecommendation
-                    key={index+recommendation.NOMBRE}
-                    name={recommendation.NOMBRE}
-                    price={recommendation.PRECIO}
-                    image={recommendation.IMAGEN} />
-                )
-              })
-            }
-          </div>
-        </>
-      )
-    } else {
-      return (
-        <div className='flex gap-2 mt-1'>
+  const renderSimpleRecommendations = (answer) => {
+    return (
+      <div className='flex gap-2 mt-1'>
+        {
+          answer.recommendations?.map((recommendation, index) => {
+            return (
+              <SimpleRecommendation
+                key={index+recommendation.NOMBRE+'simple'}
+                name={recommendation.NOMBRE}
+                image={recommendation.IMAGEN} />
+            )
+          })
+        }
+      </div>
+    )
+  }
+
+  const renderMainRecommendations = (answer, i) => {
+    return (
+      <div className='mt-4'>
+        <MainRecommendation
+          key={i+answer.recommendations[0]?.NOMBRE+'main'}
+          name={answer.recommendations[0]?.NOMBRE}
+          price={answer.recommendations[0]?.PRECIO}
+          image={answer.recommendations[0]?.IMAGEN} />
+        <div className='flex justify-end gap-2 my-4'>
           {
-            answer.recommendations?.map((recommendation, index) => {
+            answer.recommendations?.slice(1).map((recommendation, index) => {
               return (
                 <SimpleRecommendation
-                  key={index+recommendation.NOMBRE}
+                  key={index+recommendation.NOMBRE+'simple-recommendation'}
                   name={recommendation.NOMBRE}
-                  price={recommendation.PRECIO_MINIMO}
                   image={recommendation.IMAGEN} />
               )
             })
           }
         </div>
-      )
-    }
+      </div>
+    )
   }
 
   const renderPlayground = () => {
@@ -197,13 +194,34 @@ const YourIdealHaus = () => {
         <section id='messages' className='playground__messages rounded-lg flex flex-col items-end mt-5 p-4 h-full overflow-y-scroll'>
           {
             context.answers.map((answer, index) => {
-              if (answer != 'undefined') {
+              if (answer.data != 'undefined' && answer.data.recommendations.length === 0) {
                 return (
                   <>
                     <AnswerMessage key={index}>
-                      {answer.message}
+                      {answer.data.message}
                     </AnswerMessage>
-                    {renderRecommendations(answer)}
+                  </>
+                )
+              }
+
+              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length <= 3 && answer.data.recommendations.length > 0) {
+                return (
+                  <>
+                    <AnswerMessage key={index}>
+                      {answer.data.message}
+                    </AnswerMessage>
+                    {renderSimpleRecommendations(answer.data)}
+                  </>
+                )
+              }
+
+              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length >= 3 && answer.data.recommendations.length > 0) {
+                return (
+                  <>
+                    <AnswerMessage key={index}>
+                      {answer.data.message}
+                    </AnswerMessage>
+                    {renderMainRecommendations(answer.data, index)}
                   </>
                 )
               }

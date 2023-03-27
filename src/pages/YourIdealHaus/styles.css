@@ -46,12 +46,26 @@
 }
 
 .main-recommendation {
-  width: 16rem;
+  width: 18rem;
 }
 
 .main-recommendation figure {
   width: 3.5rem;
   height: 3.5rem;
+}
+
+.main-recommendation .animate-ping {
+  width: 10rem;
+  height: 3rem;
+  top: 9px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 0;
+}
+
+.main-recommendation__card {
+  z-index: 1;
 }
 
 .main-recommendation__crown {
