@@ -39,6 +39,20 @@ const Modal = ({ data }) => {
     <Container
       visible={context.isModalVisible}
       className='modal flex justify-center items-center absolute top-0 right-0 left-0 h-full w-full z-10'>
+      <div className='snowflakes'>
+        <div className='snowflake'>🏠</div>
+        <div className='snowflake'>✨</div>
+        <div className='snowflake'>🏠</div>
+        <div className='snowflake'>✨</div>
+        <div className='snowflake'>🏠</div>
+        <div className='snowflake'>✨</div>
+        <div className='snowflake'>🏠</div>
+        <div className='snowflake'>✨</div>
+        <div className='snowflake'>🏠</div>
+        <div className='snowflake'>✨</div>
+        <div className='snowflake'>🏠</div>
+        <div className='snowflake'>✨</div>
+      </div>
       <Listing image={data.IMAGEN} className='flex flex-col rounded-lg w-5/6 border-2 border-white'>
         <button
           onClick={() => context.setIsModalVisible(false)}

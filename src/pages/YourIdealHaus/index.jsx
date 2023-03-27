@@ -216,7 +216,6 @@ const YourIdealHaus = () => {
               }
 
               if (answer.data != 'undefined' && Object.keys(answer.user_responses).length >= 4 && answer.data.recommendations.length > 0) {
-                console.log(answer.data)
                 return (
                   <>
                     <Modal data={answer.data.recommendations[0]} />
