@@ -10,6 +10,7 @@ const App = () => {
   const [questions, setQuestions] = useState([])
   const [answers, setAnswers] = useState([])
   const [userResponses, setUserResponses] = useState({})
+  const [isModalVisible, setIsModalVisible] = useState(true)
   const [goToPlayground, setGoToPlayground] = useState(false)
 
   return (
@@ -25,7 +26,9 @@ const App = () => {
       userResponses,
       setUserResponses,
       goToPlayground,
-      setGoToPlayground
+      setGoToPlayground,
+      isModalVisible,
+      setIsModalVisible
     }}>
       <YourIdealHaus />
     </HausContext.Provider>

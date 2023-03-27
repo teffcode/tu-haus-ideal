@@ -5,6 +5,7 @@ import RadioOption from '../../components/RadioOption'
 import AnswerMessage from '../../components/AnswerMessage'
 import SimpleRecommendation from '../../components/SimpleRecommendation'
 import MainRecommendation from '../../components/MainRecommendation'
+import Modal from '../../components/Modal'
 import Logo from '../../components/Logo'
 import { typeWriterEffect, scrollToBottom } from '../../utils'
 import { HausContext } from '../App'
@@ -27,7 +28,7 @@ const YourIdealHaus = () => {
       user_type: 'EXPLORER_INVESTOR',
       user_responses: userResponses
     })
-    context.setAnswers([...context.answers, { data: answers.data, user_responses: context.userResponses }])
+    context.setAnswers([...context.answers, { data: answers.data, user_responses: userResponses }])
     scrollToBottom('messages')
   }
 
@@ -203,7 +204,7 @@ const YourIdealHaus = () => {
                 )
               }
 
-              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length != 3 && answer.data.recommendations.length > 0) {
+              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length < 4 && answer.data.recommendations.length > 0) {
                 return (
                   <>
                     <AnswerMessage key={index}>
@@ -214,9 +215,11 @@ const YourIdealHaus = () => {
                 )
               }
 
-              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length === 3 && answer.data.recommendations.length > 0) {
+              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length >= 4 && answer.data.recommendations.length > 0) {
+                console.log(answer.data)
                 return (
                   <>
+                    <Modal data={answer.data.recommendations[0]} />
                     <AnswerMessage key={index}>
                       {answer.data.message}
                     </AnswerMessage>
