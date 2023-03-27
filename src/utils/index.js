@@ -1,9 +1,7 @@
-export const typeWriterEffect = (elementId) => {
+export const typeWriterEffect = (elementId, message) => {
   let i = 0
   let tag = document.getElementById(elementId)
-  let html = tag.innerHTML
-  let attr = tag.setAttribute('data', html)
-  let txt = tag.getAttribute('data')
+  let txt = message
   let speed = 70
 
   const typeWriter = () => {

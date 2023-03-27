@@ -38,7 +38,7 @@ const YourIdealHaus = () => {
           user_type: 'EXPLORER_INVESTOR'
         })
         context.setGreetings(greetings.data)
-        await typeWriterEffect('text')
+        await typeWriterEffect('text', greetings.data)
       })()
 
       requestQuestions()
@@ -50,7 +50,6 @@ const YourIdealHaus = () => {
       <div className='welcome inline-flex flex-col items-center w-full h-full p-6'>
         <div className='welcome__text flex flex-1 mb-4'>
           <p id="text" className='self-end text-white text-center'>
-            {context.greetings}
           </p>
         </div>
         <PrimaryButton
