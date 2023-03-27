@@ -22,10 +22,10 @@ const YourIdealHaus = () => {
     await context.setGoToPlayground(true)
   }
 
-  const requestAnswers = async () => {
+  const requestAnswers = async (userResponses) => {
     const answers = await axios.post(ANSWERS_API, {
       user_type: 'EXPLORER_INVESTOR',
-      user_responses: context.userResponses
+      user_responses: userResponses
     })
     context.setAnswers([...context.answers, { data: answers.data, user_responses: context.userResponses }])
     scrollToBottom('messages')
@@ -63,7 +63,7 @@ const YourIdealHaus = () => {
 
   const renderSimpleRecommendations = (answer) => {
     return (
-      <div className='flex gap-2 mt-1'>
+      <div className='flex gap-2 mt-1 mb-3'>
         {
           answer.recommendations?.map((recommendation, index) => {
             return (
@@ -80,7 +80,7 @@ const YourIdealHaus = () => {
 
   const renderMainRecommendations = (answer, i) => {
     return (
-      <div className='mt-4'>
+      <div className='mt-2'>
         <MainRecommendation
           key={i+answer.recommendations[0]?.NOMBRE+'main'}
           name={answer.recommendations[0]?.NOMBRE}
@@ -121,7 +121,7 @@ const YourIdealHaus = () => {
                     checked={context.userResponses[0] === answer.value}
                     onChange={() => {
                       context.setUserResponses({ ...context.userResponses, 0: answer.value })
-                      requestAnswers()
+                      requestAnswers({ ...context.userResponses, 0: answer.value })
                     }}>
                     {answer.data}
                   </RadioOption>
@@ -141,7 +141,7 @@ const YourIdealHaus = () => {
                     checked={context.userResponses[1] === answer.value}
                     onChange={() => {
                       context.setUserResponses({ ...context.userResponses, 1: answer.value })
-                      requestAnswers()
+                      requestAnswers({ ...context.userResponses, 1: answer.value })
                     }}>
                     {answer.data}
                   </RadioOption>
@@ -161,7 +161,7 @@ const YourIdealHaus = () => {
                     checked={context.userResponses[2] === answer.value}
                     onChange={() => {
                       context.setUserResponses({ ...context.userResponses, 2: answer.value })
-                      requestAnswers()
+                      requestAnswers({ ...context.userResponses, 2: answer.value })
                     }}>
                     {answer.data}
                   </RadioOption>
@@ -181,7 +181,7 @@ const YourIdealHaus = () => {
                     checked={context.userResponses[3] === answer.value}
                     onChange={() => {
                       context.setUserResponses({ ...context.userResponses, 3: answer.value })
-                      requestAnswers()
+                      requestAnswers({ ...context.userResponses, 3: answer.value })
                     }}>
                     {answer.data}
                   </RadioOption>
@@ -203,7 +203,7 @@ const YourIdealHaus = () => {
                 )
               }
 
-              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length <= 3 && answer.data.recommendations.length > 0) {
+              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length != 3 && answer.data.recommendations.length > 0) {
                 return (
                   <>
                     <AnswerMessage key={index}>
@@ -214,7 +214,7 @@ const YourIdealHaus = () => {
                 )
               }
 
-              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length >= 3 && answer.data.recommendations.length > 0) {
+              if (answer.data != 'undefined' && Object.keys(answer.user_responses).length === 3 && answer.data.recommendations.length > 0) {
                 return (
                   <>
                     <AnswerMessage key={index}>
